@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Turn Time Analyzer</title>
+        <link rel="stylesheet" href="stylo.css" />
+        <script src="script.js"></script>
+    </head>
+
+    <body>
+        <h1>Turn Time Analyzer</h1>
+
+        <div class="layout">
+            <div>
+                <label>Paste raw turn times</label>
+                <textarea id="input"></textarea>
+                <button onclick="analyze()">Analyze ↵</button>
+                <div class="error" id="error"></div>
+            </div>
+
+            <div class="output-panel" id="output">
+                <div class="placeholder-text">
+                    Output will appear here after pasting your times and
+                    clicking Analyze.
+                    <br /><br />
+                    Required lines (any order, flexible labels):<br />
+                    — deboarding started<br />
+                    — boarding started<br />
+                    — boarding ended<br />
+                    — PWB sent<br />
+                    — doors closed
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
