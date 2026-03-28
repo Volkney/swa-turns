@@ -5,33 +5,29 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Turn Time Analyzer</title>
         <link rel="stylesheet" href="stylo.css" />
-        <script src="script.js"></script>
+        <script src="script.js" defer></script>
     </head>
 
     <body>
-        <h1>Turn Time Analyzer</h1>
-
-        <div class="layout">
-            <div>
-                <label>Paste raw turn times</label>
-                <textarea id="input"></textarea>
-                <button onclick="analyze()">Analyze ↵</button>
-                <div class="error" id="error"></div>
+        <main class="app">
+            <div class="container">
+                <section>
+                    <textarea
+                        name="turnTimes"
+                        id="turn-times"
+                        minlength="200"
+                        maxlength="500"
+                    ></textarea>
+                </section>
+                <section>
+                    <button id="boton">Parse</button>
+                </section>
             </div>
 
-            <div class="output-panel" id="output">
-                <div class="placeholder-text">
-                    Output will appear here after pasting your times and
-                    clicking Analyze.
-                    <br /><br />
-                    Required lines (any order, flexible labels):<br />
-                    — deboarding started<br />
-                    — boarding started<br />
-                    — boarding ended<br />
-                    — PWB sent<br />
-                    — doors closed
-                </div>
+            <div class="progress-container">
+                <div class="combined-bar" id="combined-bar"></div>
+                <div class="labels-bar" id="labels-bar"></div>
             </div>
-        </div>
+        </main>
     </body>
 </html>
