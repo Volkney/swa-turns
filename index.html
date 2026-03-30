@@ -11,13 +11,17 @@
     <body>
         <main class="app">
             <div class="container">
-                <section>
+                <section class="textarea-container">
                     <textarea
                         name="turnTimes"
                         id="turn-times"
                         minlength="200"
                         maxlength="500"
                     ></textarea>
+                    <div class="dp-time-container">
+                        <label for="dp-time">Departure Time:</label>
+                        <input type="text" id="dp-time" />
+                    </div>
                 </section>
                 <section>
                     <button id="boton">Parse</button>

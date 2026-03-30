@@ -9,21 +9,23 @@ boton.addEventListener("click", () => {
 
   const result = {};
 
-  for (let i = 0; i < lines.length; i++) {
-    const label = lines[i];
-    const nextLine = lines[i + 1];
+  for (let line of lines) {
+    const match = line.match(/^(.*?)(\d{2}:\d{2})$/);
 
-    if (/^\d{2}:\d{2}$/.test(nextLine)) {
+    if (match) {
+      const label = match[1].trim();
+      const time = match[2];
+
       const key = formatKey(label);
-      const value = parseTime(nextLine);
-      result[key] = { mins: value, raw: nextLine };
-      i++;
+      const value = parseTime(time);
+
+      result[key] = { mins: value, raw: time };
     }
   }
 
   const durations = {
     deboarding: {
-      mins: result.paxBoardingStarted.mins - result.paxDeboardingStarted.mins,
+      mins: safeDiff(result.paxBoardingStarted, result.paxDeboardingStarted),
       from: result.paxDeboardingStarted.raw,
       to: result.paxBoardingStarted.raw,
     },
@@ -112,4 +114,9 @@ function formatKey(str) {
 function parseTime(time) {
   const [hours, minutes] = time.split(":").map(Number);
   return hours * 60 + minutes;
+}
+
+function safeDiff(a, b) {
+  if (!a || !b) return 0;
+  return a.mins - b.mins;
 }
